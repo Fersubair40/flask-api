@@ -1,15 +1,15 @@
 import os
 from pymongo import MongoClient
 
-
 COLLECTION_NAME = 'kudos'
+
 
 class MongoRespositry(object):
     def __init__(self):
         mongo_url = os.environ.get('MONGO_URL')
         self.db = MongoClient(mongo_url).kudos
 
-    def find_all( self, selector):
+    def find_all(self, selector):
         return self.db.kudos.find(selector)
 
     def find(self, selector):
@@ -23,6 +23,3 @@ class MongoRespositry(object):
 
     def delete(self, selector):
         return self.db.kudos.delete_one(selector).deleted_count
-
-
-
